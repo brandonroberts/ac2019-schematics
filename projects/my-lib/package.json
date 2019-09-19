@@ -4,5 +4,13 @@
   "peerDependencies": {
     "@angular/common": "^8.2.7",
     "@angular/core": "^8.2.7"
-  }
+  },
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+    "copy:schemas": "cp -P -p schematics/my-service/schema.json ../../dist/my-lib/schematics/my-service",
+    "copy:files": "mkdir -p ../../dist/my-lib/schematics/my-service/files/ && cp -P -p schematics/my-service/files/** ../../dist/my-lib/schematics/my-service/files/",
+    "copy:collection": "cp schematics/collection.json ../../dist/my-lib/schematics/collection.json",
+    "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:collection"
+  },
+  "schematics": "./schematics/collection.json"
 }
